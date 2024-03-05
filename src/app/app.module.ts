@@ -22,6 +22,10 @@ import { ConfirmationDialogComponent } from './miscellaneous/confirmation-dialog
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { ChatComponent } from './optional/chat/chat.component';
 import { CalendarComponent } from './optional/calendar/calendar.component';
+import { HomeComponent } from './home/home.component';
+import { StudentpageComponent } from './studentpage/studentpage.component';
+import { TeacherRegistrationComponent } from './authentication/teacher-registration/teacher-registration.component';
+import { TeacherpageComponent } from './teacherpage/teacherpage.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,11 @@ import { CalendarComponent } from './optional/calendar/calendar.component';
     ConfirmationDialogComponent,
     SpinnerComponent,
     ChatComponent,
-    CalendarComponent
+    CalendarComponent,
+    HomeComponent,
+    StudentpageComponent,
+    TeacherRegistrationComponent,
+    TeacherpageComponent
   ],
   imports: [
     BrowserModule,
