@@ -1,0 +1,20 @@
+<div class="carousel relative overflow-hidden shadow-lg">
+  <div class="carousel-inner relative w-full overflow-hidden flex">
+    <div class="carousel-item" *ngFor="let item of carouselItems; let i = index" [ngClass]="{ 'block': i === slideIndex, 'hidden': i !== slideIndex }">
+      <div class="w-full">
+        <div class="h-96 md:h-80 xl:h-96 shadow-lg rounded-lg overflow-hidden bg-cover bg-center" [style.backgroundImage]="'url(' + item.imageSrc + ')'">
+          <div class="p-6 text-left h-full flex flex-col justify-center">
+            <h2 class="mb-3 text-3xl md:text-2xl xl:text-3xl font-bold text-gray-800">{{ item.title }}</h2>
+            <p class="text-gray-600">{{ item.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="absolute inset-y-0 left-0 z-10 flex items-center justify-center w-16 bg-white bg-opacity-50 text-gray-800 hover:bg-opacity-75 focus:outline-none" (click)="prevSlide()">
+    <!-- Previous button icon -->
+  </button>
+  <button class="absolute inset-y-0 right-0 z-10 flex items-center justify-center w-16 bg-white bg-opacity-50 text-gray-800 hover:bg-opacity-75 focus:outline-none" (click)="nextSlide()">
+    <!-- Next button icon -->
+  </button>
+</div>

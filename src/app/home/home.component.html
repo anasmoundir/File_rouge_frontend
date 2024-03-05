@@ -1,62 +1,46 @@
-
-<app-header></app-header>
-
 <body class="bg-gray-100 font-sans leading-normal tracking-normal">
-  <header class="bg-white shadow">
+  <app-navbar></app-navbar>
 
-  </header>
-  <main class="px-12 py-6">
-    <div class="flex flex-col items-center justify-center">
-      <h1 class="text-5xl font-bold text-gray-800">
-        Découvrez les cours Udemy les plus populaires
-      </h1>
-      <p class="text-xl text-gray-600 mb-6">
-        Trouvez le cours qui vous convient le mieux et commencez à apprendre dès maintenant.
-      </p>
-      <div class="flex flex-wrap -mx-4">
-        <div class="w-full md:w-1/3 px-4 mb-8">
-          <div class="h-full shadow-lg rounded-lg overflow-hidden">
-            <img src="../../assets/ressources/images/1.jpg" alt="Développez votre entreprise avec Google Ads" class="w-full">
-            <div class="p-6">
-              <h2 class="mb-3 text-2xl font-bold text-gray-800">
-                Développez votre entreprise avec Google Ads
-              </h2>
-              <p class="text-gray-600">
-                Apprenez à utiliser Google Ads pour développer votre entreprise et atteindre de nouveaux clients.
-              </p>
-            </div>
-          </div>
+
+  <div class="px-16 mx-auto">
+    <app-carousel></app-carousel>
+  </div>
+
+
+
+
+  <main class="container mx-auto px-4 py-12">
+    <h1 class="text-4xl font-bold text-gray-800 text-center mb-8">Explore Our Courses</h1>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <img src="../../assets/images/course1.jpg" alt="Course 1" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h2 class="text-xl font-semibold text-gray-800 mb-2">Google Ads Mastery</h2>
+          <p class="text-gray-600 text-sm">Learn how to master Google Ads and grow your business.</p>
         </div>
-        <div class="w-full md:w-1/3 px-4 mb-8">
-          <div class="h-full shadow-lg rounded-lg overflow-hidden">
-            <img src="../../assets/ressources/images/1.jpg" alt="Devenez un expert en JavaScript" class="w-full">
-            <div class="p-6">
-              <h2 class="mb-3 text-2xl font-bold text-gray-800">
-                Devenez un expert en JavaScript
-              </h2>
-              <p class="text-gray-600">
-                Maîtrisez JavaScript et devenez un développeur Web professionnel en apprenant les concepts clés de ce langage de programmation.
-              </p>
-            </div>
-          </div>
+      </div>
+
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <img src="../../assets/images/course2.jpg" alt="Course 2" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h2 class="text-xl font-semibold text-gray-800 mb-2">JavaScript Fundamentals</h2>
+          <p class="text-gray-600 text-sm">Master the fundamentals of JavaScript and become a professional web developer.</p>
         </div>
-        <div class="w-full md:w-1/3 px-4 mb-8">
-          <div class="h-full shadow-lg rounded-lg overflow-hidden">
-            <img src="../../assets/ressources/images/1.jpg" alt="Excel : Analyse de données pour les décisions d'affaires" class="w-full">
-            <div class="p-6">
-              <h2 class="mb-3 text-2xl font-bold text-gray-800">
-                Excel : Analyse de données pour les décisions d'affaires
-              </h2>
-              <p class="text-gray-600">
-                Apprenez à utiliser Excel pour l'analyse de données et la prise de décision d'affaires.
-              </p>
-            </div>
-          </div>
+      </div>
+
+      <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <img src="../../assets/images/course3.jpg" alt="Course 3" class="w-full h-48 object-cover">
+        <div class="p-4">
+          <h2 class="text-xl font-semibold text-gray-800 mb-2">Data Analysis with Excel</h2>
+          <p class="text-gray-600 text-sm">Learn data analysis techniques using Excel for business decisions.</p>
         </div>
       </div>
     </div>
+
+    <div class="text-center mt-8">
+      <a href="#" class="text-indigo-600 hover:underline">Browse All Courses</a>
+    </div>
   </main>
+  <app-footer></app-footer>
 </body>
-<footer></footer>
-
-

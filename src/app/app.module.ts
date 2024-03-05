@@ -26,6 +26,11 @@ import { HomeComponent } from './home/home.component';
 import { StudentpageComponent } from './studentpage/studentpage.component';
 import { TeacherRegistrationComponent } from './authentication/teacher-registration/teacher-registration.component';
 import { TeacherpageComponent } from './teacherpage/teacherpage.component';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { CarouselComponent } from './carousel/carousel.component';
+import { StudentNavComponent } from './shared/student-nav/student-nav.component';
+import { TeacherNavComponent } from './shared/teacher-nav/teacher-nav.component';
+import { AdminNavbarComponent } from './shared/admin-navbar/admin-navbar.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +57,12 @@ import { TeacherpageComponent } from './teacherpage/teacherpage.component';
     HomeComponent,
     StudentpageComponent,
     TeacherRegistrationComponent,
-    TeacherpageComponent
+    TeacherpageComponent,
+    NavbarComponent,
+    CarouselComponent,
+    StudentNavComponent,
+    TeacherNavComponent,
+    AdminNavbarComponent
   ],
   imports: [
     BrowserModule,
