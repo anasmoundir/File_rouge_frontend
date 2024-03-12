@@ -1,0 +1,10 @@
+<div class="instructor-approval">
+  <h2>Pending Instructor Approval Requests</h2>
+  <ul>
+    <li *ngFor="let request of pendingRequests">
+      {{ request.name }} - {{ request.email }}
+      <button (click)="approveRequest(request)">Approve</button>
+      <button (click)="rejectRequest(request)">Reject</button>
+    </li>
+  </ul>
+</div>

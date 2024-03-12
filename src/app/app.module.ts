@@ -14,7 +14,7 @@ import { ResourceListComponent } from './resource-management/resource-list/resou
 import { ResourceUploadComponent } from './resource-management/resource-upload/resource-upload.component';
 import { CategoryListComponent } from './category-management/category-list/category-list.component';
 import { CategoryDetailComponent } from './category-management/category-detail/category-detail.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './Dashbord/dashboard/dashboard.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { ErrorHandlingComponent } from './miscellaneous/error-handling/error-handling.component';
@@ -31,6 +31,9 @@ import { CarouselComponent } from './carousel/carousel.component';
 import { StudentNavComponent } from './shared/student-nav/student-nav.component';
 import { TeacherNavComponent } from './shared/teacher-nav/teacher-nav.component';
 import { AdminNavbarComponent } from './shared/admin-navbar/admin-navbar.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { InstructorApprovalComponent } from './instructor-approval/instructor-approval.component';
+import { CardsComponent } from './cards/cards.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,10 @@ import { AdminNavbarComponent } from './shared/admin-navbar/admin-navbar.compone
     CarouselComponent,
     StudentNavComponent,
     TeacherNavComponent,
-    AdminNavbarComponent
+    AdminNavbarComponent,
+    SidebarComponent,
+    InstructorApprovalComponent,
+    CardsComponent
   ],
   imports: [
     BrowserModule,
