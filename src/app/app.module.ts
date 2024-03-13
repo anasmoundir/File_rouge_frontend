@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/authentication/login/login.component';
@@ -34,6 +33,8 @@ import { AdminNavbarComponent } from './components/shared/admin-navbar/admin-nav
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { InstructorApprovalComponent } from './components/instructor-approval/instructor-approval.component';
 import { CardsComponent } from './components/cards/cards.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,9 @@ import { CardsComponent } from './components/cards/cards.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

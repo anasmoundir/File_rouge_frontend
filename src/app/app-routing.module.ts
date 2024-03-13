@@ -21,6 +21,9 @@ const routes: Routes = [
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
 
       { path: 'approveInstructor', component: InstructorApprovalComponent }
+      // Example: { path: 'profile', component: ProfileComponent },
+      // Example: { path: 'courses', component: CoursesComponent },
+      // Example: { path: 'enrollments', component: EnrollmentsComponent },
     ]
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
