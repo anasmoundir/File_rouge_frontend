@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { RegistrationComponent } from './authentication/registration/registration.component';
-import { LoginComponent } from './authentication/login/login.component';
-import { HomeComponent } from './home/home.component';
-import { StudentpageComponent } from './studentpage/studentpage.component';
-import { TeacherRegistrationComponent } from './authentication/teacher-registration/teacher-registration.component';
-import { DashboardComponent } from './Dashbord/dashboard/dashboard.component';
-import { InstructorApprovalComponent } from './instructor-approval/instructor-approval.component';
+import { RegistrationComponent } from './components/authentication/registration/registration.component';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { StudentpageComponent } from './components/studentpage/studentpage.component';
+import { TeacherRegistrationComponent } from './components/authentication/teacher-registration/teacher-registration.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { InstructorApprovalComponent } from './components/instructor-approval/instructor-approval.component';
 
 const routes: Routes = [
   { path: 'Registration', component: RegistrationComponent },
@@ -23,7 +23,7 @@ const routes: Routes = [
       { path: 'approveInstructor', component: InstructorApprovalComponent }
     ]
   },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // Redirect to dashboard
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
 @NgModule({
