@@ -1,10 +1,28 @@
 import { Component } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [LoginService],
 })
 export class LoginComponent {
+  username: string = '';
+  password: string = '';
+  constructor(private loginservice:LoginService ) {}
+  login() {
+    this.loginservice.login(this.username, this.password).subscribe(
+
+      (response: any) => {
+        console.log(response);
+        localStorage.setItem('accessToken', response.token);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
 
 }

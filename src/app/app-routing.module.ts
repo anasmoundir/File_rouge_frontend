@@ -10,10 +10,11 @@ import { InstructorApprovalComponent } from './components/instructor-approval/in
 
 const routes: Routes = [
   { path: 'Registration', component: RegistrationComponent },
-  { path: 'Login', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'teacherRegister', component: TeacherRegistrationComponent },
   { path: 'student', component: StudentpageComponent },
+  {path: '',component:HomeComponent},
   {
     path: 'dashboard',
     component: DashboardComponent,
