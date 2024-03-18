@@ -14,13 +14,15 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-    if (request.url.includes('/api/auth/login') || request.url.includes('/api/auth/register')) {
+     if (request.url.includes('/api/auth/login') || request.url.includes('/api/auth/register')) {
       return next.handle(request);
     }
 
     const authToken = localStorage.getItem('accessToken');
 
-    console.log('authToken', authToken);
+
+    console.log('AuthInterceptor: ', authToken);
+
     if (authToken) {
       const authRequest = request.clone({
         setHeaders: {

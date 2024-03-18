@@ -1,10 +1,28 @@
-<div class="instructor-approval">
-  <h2>Pending Instructor Approval Requests</h2>
+<div class="container mx-auto mt-8">
+  <h2 class="text-2xl font-semibold mb-4">Teacher List</h2>
+
   <ul>
-    <li *ngFor="let request of pendingRequests">
-      {{ request.name }} - {{ request.email }}
-      <button (click)="approveRequest(request)">Approve</button>
-      <button (click)="rejectRequest(request)">Reject</button>
+    <li *ngFor="let teacher of teachers" class="p-6 bg-white shadow-md rounded-md mb-4">
+      <!-- Teacher details -->
+      <div class="flex justify-between items-center mb-4">
+        <div>
+          <h3 class="text-lg font-semibold">{{ teacher.user.username }} {{ teacher.user.email }}</h3>
+          <p class="text-gray-600">{{ teacher.user.email }}</p>
+          <p class="text-gray-600">{{ teacher.user.username }}</p>
+          <p class="text-gray-600">{{ teacher.teachingExperience }}</p>
+          <p class="text-gray-600">{{ teacher.professionalExperience }}</p>
+          <p class="text-gray-600">{{ teacher.teachingPhilosophy }}</p>
+          <p class="text-gray-600">
+            <span [ngClass]="{ 'bg-green-500': teacher.approved, 'bg-red-500': !teacher.approved }" class="px-2 py-1 text-white rounded-md">
+              {{ teacher.approved ? 'Approved' : 'Not Approved' }}
+            </span>
+          </p>
+        </div>
+      
+        <div class="flex items-center">
+          <button (click)="approveTeacher(teacher.id)" class="px-4 py-2 bg-green-500 text-white rounded-md mr-2">Approve</button>
+        </div>
+      </div>
     </li>
   </ul>
 </div>

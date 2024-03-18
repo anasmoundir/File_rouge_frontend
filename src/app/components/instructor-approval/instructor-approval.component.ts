@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Teacher } from 'src/app/models/teacher.interface';
+import { TeacherService } from 'src/app/services/teacher.service';
 
 @Component({
   selector: 'app-instructor-approval',
@@ -6,20 +8,35 @@ import { Component } from '@angular/core';
   styleUrls: ['./instructor-approval.component.css']
 })
 export class InstructorApprovalComponent   {
-  pendingRequests: any[] = [];
+  teachers: Teacher[] = [];
 
-  // constructor(private apiService: ApiService) { }
+  constructor(private teacherService: TeacherService) { }
 
-  // ngOnInit(): void {
-  //   // Fetch pending instructor requests from the backend when the component initializes
-  //   this.apiService.getPendingInstructorRequests().subscribe((requests: any[]) => {
-  //     this.pendingRequests = requests;
-  //   });
-  // }
-
-  approveRequest(request: any): void {
+  ngOnInit(): void {
+    this.loadTeachers();
   }
 
-  rejectRequest(request: any): void {
+  loadTeachers(): void {
+    this.teacherService.getAllTeachers().subscribe(
+      (teachers: Teacher[]) => {
+        console.log('Teachers:', teachers);
+        this.teachers = teachers;
+      },
+      (error: any) => {
+        console.error('Error fetching teachers:', error);
+      }
+    );
+  }
+
+  approveTeacher(teacherId: number): void {
+    this.teacherService.approveTeacher(teacherId).subscribe(
+      (response: Teacher) => {
+        console.log('Teacher approved successfully:', response);
+        this.loadTeachers();
+      },
+      (error: any) => {
+        console.error('Error approving teacher:', error);
+      }
+    );
   }
 }

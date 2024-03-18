@@ -7,6 +7,7 @@ import { StudentpageComponent } from './components/studentpage/studentpage.compo
 import { TeacherRegistrationComponent } from './components/authentication/teacher-registration/teacher-registration.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InstructorApprovalComponent } from './components/instructor-approval/instructor-approval.component';
+import { CategoryComponent } from './components/category/category.component';
 
 const routes: Routes = [
   { path: 'Registration', component: RegistrationComponent },
@@ -21,7 +22,8 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
 
-      { path: 'approveInstructor', component: InstructorApprovalComponent }
+      { path: 'approveInstructor', component: InstructorApprovalComponent },
+      {path: 'categories',component:CategoryComponent},
       // Example: { path: 'profile', component: ProfileComponent },
       // Example: { path: 'courses', component: CoursesComponent },
       // Example: { path: 'enrollments', component: EnrollmentsComponent },

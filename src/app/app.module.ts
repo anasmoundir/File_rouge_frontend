@@ -36,6 +36,8 @@ import { CardsComponent } from './components/cards/cards.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
 import { FormsModule } from '@angular/forms';
+import { CategoryComponent } from './components/category/category.component';
+import { SubcategoryComponent } from './components/subcategory/subcategory.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +72,9 @@ import { FormsModule } from '@angular/forms';
     AdminNavbarComponent,
     SidebarComponent,
     InstructorApprovalComponent,
-    CardsComponent
+    CardsComponent,
+    CategoryComponent,
+    SubcategoryComponent
   ],
   imports: [
     BrowserModule,

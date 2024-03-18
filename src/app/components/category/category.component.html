@@ -1,0 +1,31 @@
+<div class="container mx-auto px-4">
+  <h2 class="text-2xl font-bold mb-4">Categories</h2>
+
+  <form (ngSubmit)="createCategory()" class="mb-4">
+    <div class="flex items-center mb-2">
+      <input type="text" class="form-input flex-grow mr-2" placeholder="Enter category name" [(ngModel)]="newCategory.name" name="name" required>
+      <button type="submit" class="btn btn-primary rounded-md bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 focus:outline-none">Add </button>
+    </div>
+  </form>
+
+  <ul class="list-group">
+    <li *ngFor="let category of categories" class="list-group-item">
+      <div *ngIf="selectedCategoryId !== category.id; else editCategoryForm" class="flex items-center justify-between">
+        <div>{{ category.name }}</div>
+        <div class="space-x-2 space-y-2">
+          <button class="btn btn-primary rounded-md bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 focus:outline-none" (click)="editCategory(category.id)">Edit</button>
+          <button class="btn btn-danger rounded-md bg-red-500 hover:bg-red-700 text-white px-3 py-1 focus:outline-none" (click)="deleteCategory(category.id)">Delete</button>
+        </div>
+      </div>
+      <ng-template #editCategoryForm>
+        <div class="flex items-center justify-between space-y-8">
+          <input type="text" class="form-input flex-grow mr-2" [(ngModel)]="category.name" required>
+          <div class="space-x-2 space-y-8">
+            <button class="btn btn-primary rounded-md bg-blue-500 hover:bg-blue-700 text-white px-3 py-1 focus:outline-none" (click)="updateCategory(category)">Save</button>
+            <button class="btn btn-secondary rounded-md bg-gray-500 hover:bg-gray-700 text-white px-3 py-1 focus:outline-none" (click)="selectedCategoryId = null">Cancel</button>
+          </div>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+</div>

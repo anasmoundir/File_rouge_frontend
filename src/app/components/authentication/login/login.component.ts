@@ -15,8 +15,9 @@ export class LoginComponent {
     this.loginservice.login(this.username, this.password).subscribe(
 
       (response: any) => {
-        console.log(response);
-        localStorage.setItem('accessToken', response.token);
+        localStorage.setItem('accessToken', response.accessToken);
+        console.log('Login successful:', response);
+        console.log(response.accessToken);
       },
       (error) => {
         console.log(error);
