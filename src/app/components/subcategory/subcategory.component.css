@@ -1,0 +1,35 @@
+.subcategory-form {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.form-label {
+  font-weight: bold;
+}
+
+.form-control {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+
+.subcategory-list {
+  list-style: none;
+  padding: 0;
+}
+
+.subcategory-list li {
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem 1rem;
+}
+
+.edit-form {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+.btn {
+  margin-left: 0.5rem;
+}
