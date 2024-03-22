@@ -5,6 +5,25 @@
 <section *ngIf="courses" class="mt-6">
   <h2 class="text-2xl font-semibold mb-5 text-gray-800">My Recent Courses</h2>
 
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div *ngFor="let course of courses" class="mb-4">
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="p-4">
+          <h5 class="card-title text-xl font-semibold">{{ course.title }}</h5>
+          <p class="card-text mt-2">{{ course.description }}</p>
+          <p class="card-text"><strong>Start Date:</strong> {{ course.startDate | date: 'mediumDate' }}</p>
+          <p class="card-text"><strong>End Date:</strong> {{ course.endDate | date: 'mediumDate' }}</p>
+          <div class="flex justify-between mt-4">
+            <button [routerLink]="['/teacher', 'lessons', course.courseId]" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline">Consult Lessons</button>
+            <button (click)="editCourse(course)" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline">Edit</button>
+            <button (click)="deleteCourse(course.courseId)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <!-- Create Course Form -->
   <form (ngSubmit)="createCourse()" class="mb-6">
     <div class="mb-4">
@@ -23,26 +42,10 @@
       <label for="endDate" class="block text-gray-700 text-sm font-bold mb-2">End Date:</label>
       <input type="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="endDate" name="endDate" [(ngModel)]="newCourse.endDate" required>
     </div>
-    
-    <!-- Add more form fields for other properties -->
+
+
     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Course</button>
   </form>
 
-  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <div *ngFor="let course of courses" class="mb-4">
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-        <div class="p-4">
-          <h5 class="card-title text-xl font-semibold">{{ course.title }}</h5>
-          <p class="card-text mt-2">{{ course.description }}</p>
-          <p class="card-text"><strong>Start Date:</strong> {{ course.startDate | date: 'mediumDate' }}</p>
-          <p class="card-text"><strong>End Date:</strong> {{ course.endDate | date: 'mediumDate' }}</p>
-          <div class="flex justify-between mt-4">
-            <button [routerLink]="['/teacher', 'lessons', course.courseId]" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline">Consult Lessons</button>
-            <button (click)="editCourse(course)" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline">Edit</button>
-            <button (click)="deleteCourse(course.courseId)" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded focus:outline-none focus:shadow-outline">Delete</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 </section>
