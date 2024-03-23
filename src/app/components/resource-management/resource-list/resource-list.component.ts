@@ -1,8 +1,9 @@
+import { HttpEventType } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import { LessonDTO } from 'src/app/dto/lesson.dto';
 import { ResourcesDTO } from 'src/app/dto/resources.dto';
-import { Lesson } from 'src/app/models/lesson.interface';
 import { LessonService } from 'src/app/services/lesson.service';
 import { ResourceService } from 'src/app/services/resource.service';
 
@@ -19,6 +20,7 @@ export class ResourceListComponent {
   resources: ResourcesDTO[] | undefined;
   newResource: { title: string, description: string, file: File | undefined } = { title: '', description: '', file: undefined };
   showCreateModal: boolean = false;
+  uploadProgress: number | undefined;
 
   constructor(private lessonService: LessonService,
               private resourceService: ResourceService,
@@ -28,16 +30,18 @@ export class ResourceListComponent {
     this.route.params.subscribe(params => {
       this.lessonId = +params['lessonId'];
       this.getLessonById(this.lessonId);
-      this.getResourcesByLessonId(this.lessonId);
     });
   }
 
   getLessonById(lessonId: number): void {
     this.lessonService.getLessonById(lessonId)
       .subscribe(
-        (data: LessonDTO) => {
-          this.lesson = data;
-          this.courseId = data.courseId; 
+        (lesson: LessonDTO) => {
+          this.lesson = lesson;
+          this.courseId = lesson.course?.courseId ?? 0;
+          console.log('Lesson:', lesson);
+          console.log('Course ID:', this.courseId);
+          this.getResourcesByLessonId(this.lessonId);
         },
         error => {
           this.error = error;
@@ -57,30 +61,34 @@ export class ResourceListComponent {
       );
   }
 
-
-
   addResources(): void {
-    const resourcesDTO: ResourcesDTO = {
-      ressourceId: 0,
-      url: '',
-      title: this.newResource.title,
-      description: this.newResource.description,
-      courseId: this.courseId,
-      lessonId: this.lessonId,
-      file: this.newResource.file || new File([], '')
-    };
+    if (!this.courseId || !this.lessonId || !this.newResource.file) {
+      console.error('Course ID, Lesson ID, or file is undefined or null.');
+      return;
+    }
 
-    this.resourceService.uploadResource(resourcesDTO)
-      .subscribe(
-        (data: ResourcesDTO) => {
-          this.getResourcesByLessonId(this.lessonId);
-          this.closeCreateModal();
-        },
-        error => {
-          this.error = error;
-        }
-      );
+    const formData = new FormData();
+    formData.append('file', this.newResource.file);
+    formData.append('title', this.newResource.title);
+    formData.append('description', this.newResource.description);
+    formData.append('courseId', this.courseId.toString());
+    formData.append('lessonId', this.lessonId.toString());
+
+    this.resourceService.uploadResource(formData).subscribe(
+      (data: ResourcesDTO) => {
+        this.getResourcesByLessonId(this.lessonId);
+        this.closeCreateModal();
+      },
+      error => {
+        console.error('Error uploading resource:', error);
+        this.error = error;
+      },
+      () => {
+        this.uploadProgress = undefined;
+      }
+    );
   }
+
 
   deleteResource(id: number): void {
     this.resourceService.deleteResource(id)
@@ -105,4 +113,4 @@ export class ResourceListComponent {
   onFileSelected(event: any): void {
     this.newResource.file = event.target.files[0];
   }
- }
+}

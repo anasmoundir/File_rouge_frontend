@@ -8,6 +8,11 @@ import { TeacherRegistrationComponent } from './components/authentication/teache
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { InstructorApprovalComponent } from './components/instructor-approval/instructor-approval.component';
 import { CategoryComponent } from './components/category/category.component';
+import { SubcategoryComponent } from './components/subcategory/subcategory.component';
+import { TeacherpageComponent } from './components/teacherpage/teacherpage.component';
+import { CourseListComponent } from './components/course-management/course-list/course-list.component';
+import { LessonListComponent } from './components/lesson-list/lesson-list.component';
+import { ResourceListComponent } from './components/resource-management/resource-list/resource-list.component';
 
 const routes: Routes = [
   { path: 'Registration', component: RegistrationComponent },
@@ -16,14 +21,22 @@ const routes: Routes = [
   { path: 'teacherRegister', component: TeacherRegistrationComponent },
   { path: 'student', component: StudentpageComponent },
   {path: '',component:HomeComponent},
+   { path: 'teacher',
+   component: TeacherpageComponent,
+    children: [
+      { path: 'Mycourse', component: CourseListComponent },
+      { path: 'lessons/:courseId', component: LessonListComponent },
+      { path: 'resources/lesson/:lessonId', component: ResourceListComponent },
+    ]
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
       { path: '', redirectTo: 'overview', pathMatch: 'full' },
-
       { path: 'approveInstructor', component: InstructorApprovalComponent },
       {path: 'categories',component:CategoryComponent},
+      { path: 'subcategory', component: SubcategoryComponent },
       // Example: { path: 'profile', component: ProfileComponent },
       // Example: { path: 'courses', component: CoursesComponent },
       // Example: { path: 'enrollments', component: EnrollmentsComponent },

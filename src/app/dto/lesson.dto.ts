@@ -5,6 +5,6 @@ export interface LessonDTO {
   lessonId: number;
   title: string;
   content: string;
-  course: CourseDTO;
-  resources: ResourcesDTO[];
+  courseId: number;
+  course?: CourseDTO;
 }

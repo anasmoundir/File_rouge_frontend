@@ -1,4 +1,9 @@
+import { Category } from "../models/category.interface";
+
 export interface SubcategoryDTO {
+  id: number;
   name: string;
-  categoryId: number;
+  category: {
+    id: number;
+  };
 }

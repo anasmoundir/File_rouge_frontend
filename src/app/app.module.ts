@@ -7,10 +7,7 @@ import { RegistrationComponent } from './components/authentication/registration/
 import { UserProfileComponent } from './components/user-management/user-profile/user-profile.component';
 import { UserListComponent } from './components/user-management/user-list/user-list.component';
 import { CourseListComponent } from './components/course-management/course-list/course-list.component';
-import { CourseDetailComponent } from './components/course-management/course-detail/course-detail.component';
-import { CourseCreationComponent } from './components/course-management/course-creation/course-creation.component';
 import { ResourceListComponent } from './components/resource-management/resource-list/resource-list.component';
-import { ResourceUploadComponent } from './components/resource-management/resource-upload/resource-upload.component';
 import { CategoryListComponent } from './components/category-management/category-list/category-list.component';
 import { CategoryDetailComponent } from './components/category-management/category-detail/category-detail.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -35,9 +32,12 @@ import { InstructorApprovalComponent } from './components/instructor-approval/in
 import { CardsComponent } from './components/cards/cards.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoryComponent } from './components/category/category.component';
 import { SubcategoryComponent } from './components/subcategory/subcategory.component';
+import { CoursesComponent } from './components/courses/courses.component';
+import { LessonListComponent } from './components/lesson-list/lesson-list.component';
+
 
 @NgModule({
   declarations: [
@@ -47,10 +47,7 @@ import { SubcategoryComponent } from './components/subcategory/subcategory.compo
     UserProfileComponent,
     UserListComponent,
     CourseListComponent,
-    CourseDetailComponent,
-    CourseCreationComponent,
     ResourceListComponent,
-    ResourceUploadComponent,
     CategoryListComponent,
     CategoryDetailComponent,
     DashboardComponent,
@@ -74,13 +71,18 @@ import { SubcategoryComponent } from './components/subcategory/subcategory.compo
     InstructorApprovalComponent,
     CardsComponent,
     CategoryComponent,
-    SubcategoryComponent
+    SubcategoryComponent,
+    CoursesComponent,
+    LessonListComponent,
+
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

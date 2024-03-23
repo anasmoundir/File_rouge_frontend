@@ -7,12 +7,12 @@ import { UserDTO } from './user.dto';
 export interface CourseDTO {
   courseId: number;
   title: string;
-  instructor: UserDTO;
+  instructorId: number;
   description: string;
   startDate: Date;
   endDate: Date;
-  category: CategoryDTO;
-  subcategory: SubcategoryDTO;
+  subcategoryId: number;
   resources: ResourcesDTO[];
   lessons: LessonDTO[];
 }
+

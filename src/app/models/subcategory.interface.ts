@@ -5,5 +5,4 @@ export interface Subcategory {
   id: number;
   name: string;
   category: Category;
-  courses?: Course[];
 }
