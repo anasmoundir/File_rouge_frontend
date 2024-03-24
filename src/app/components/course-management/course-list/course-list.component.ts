@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CourseDTO } from 'src/app/dto/course.dto';
@@ -9,13 +10,22 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./course-list.component.css']
 })
 export class CourseListComponent implements OnInit{
+  showModal: boolean = false;
+  uploadingImage: boolean = false;
   courses: CourseDTO[] = [];
   error: string | undefined;
   newCourse: CourseDTO = {
-    title: '', subcategoryId: 0, instructorId: 0, description: '', startDate: new Date(), endDate: new Date(),
+    imageUrl: undefined,
+    title: '',
+    subcategoryId: 0,
+    instructorId: 0,
+    description: '',
+    startDate: new Date(),
+    endDate: new Date(),
     courseId: 0,
     resources: [],
-    lessons: []
+    lessons: [],
+    courseImage: undefined
   };
 
   constructor(private courseService: CourseService) { }
@@ -36,17 +46,64 @@ export class CourseListComponent implements OnInit{
       );
   }
 
+
   createCourse(): void {
-    this.courseService.createCourse(this.newCourse)
+    console.log('newCourse.startDate:', this.newCourse.startDate);
+    console.log('newCourse.endDate:', this.newCourse.endDate);
+
+    if (!(this.newCourse.startDate instanceof Date)) {
+      console.error('newCourse.startDate is not a valid Date object');
+      return;
+    }
+    if (!(this.newCourse.endDate instanceof Date)) {
+      console.error('newCourse.endDate is not a valid Date object');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('title', this.newCourse.title);
+    formData.append('subcategoryId', this.newCourse.subcategoryId.toString());
+    formData.append('instructorId', this.newCourse.instructorId.toString());
+    formData.append('description', this.newCourse.description);
+    formData.append('startDate', this.newCourse.startDate.toISOString());
+    formData.append('endDate', this.newCourse.endDate.toISOString());
+    formData.append('courseImage', this.newCourse.courseImage as File);
+
+    const headers = new HttpHeaders();
+
+    this.courseService.createCourse(formData)
       .subscribe(
         createdCourse => {
           this.courses.push(createdCourse);
-          this.newCourse = { title: '', subcategoryId: 0, instructorId: 0, description: '', startDate: new Date(), endDate: new Date(), courseId: 0, resources: [], lessons: []};
+          this.newCourse = {
+            imageUrl: undefined,
+            title: '',
+            subcategoryId: 0,
+            instructorId: 0,
+            description: '',
+            startDate: new Date(),
+            endDate: new Date(),
+            courseId: 0,
+            resources: [],
+            lessons: [],
+            courseImage: undefined
+          };
         },
         error => {
           this.error = error;
         }
       );
+  }
+
+  onImageSelected(event: any): void {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.newCourse.courseImage = file;
+      this.uploadingImage = true;
+      setTimeout(() => {
+        this.uploadingImage = false;
+      }, 2000);
+    }
   }
 
   editCourse(course: CourseDTO): void {
@@ -73,4 +130,8 @@ export class CourseListComponent implements OnInit{
         }
       );
   }
+  toggleModal(): void {
+    this.showModal = !this.showModal;
+  }
+
 }

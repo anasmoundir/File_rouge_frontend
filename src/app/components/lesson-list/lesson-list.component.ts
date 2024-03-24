@@ -59,7 +59,9 @@ export class LessonListComponent {
               startDate: new Date(),
               endDate: new Date(),
               resources: [],
-              lessons: []
+              lessons: [],
+              courseImage: undefined,
+              imageUrl: undefined
             },
             resources: []
           };

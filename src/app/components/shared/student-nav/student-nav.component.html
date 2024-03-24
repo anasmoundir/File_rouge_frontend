@@ -1,30 +1,37 @@
-<nav class="flex items-center justify-between flex-wrap bg-white p-6 mb-4">
+<nav class="flex items-center justify-between flex-wrap bg-white p-6 shadow-lg">
   <div class="flex items-center flex-shrink-0 text-2xl font-bold text-gray-800 mr-6">
     <span class="text-teal-500">Brain</span> Rose
   </div>
-  <div class="block lg:hidden">
-    <button class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-500 hover:text-gray-600 hover:border-gray-600">
-      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v15z"/></svg>
-    </button>
-  </div>
+
   <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="lg:flex-grow">
+      <form class="lg:flex" (submit)="searchCourses()">
+        <input type="text" class="appearance-none bg-gray-200 text-gray-700 border border-gray-200 rounded-l py-2 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 w-full lg:w-auto" placeholder="Search Courses" [(ngModel)]="searchTerm">
+        <button type="submit" class="flex items-center justify-center px-4 py-2 border border-transparent text-sm leading-5 font-medium rounded-r-md text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:border-teal-700 focus:shadow-outline-teal active:bg-teal-700 transition ease-in-out duration-150">
+          <svg class="w-4 h-4 mr-2 -ml-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+          Search
+        </button>
+      </form>
+    </div>
+
     <div class="text-sm lg:flex-grow">
-      <a href="#search" class="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-gray-600 mr-4">
-        Rechercher
+      <a href="/student/ExploreCourses" class="block mt-4 lg:mt-0 lg:inline-block text-gray-600 hover:text-gray-700 mr-4">
+        My Courses
       </a>
-      <a href="#business" class="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-gray-600 mr-4">
-        ROSE Business
+      <a href="#grades" class="block mt-4 lg:mt-0 lg:inline-block text-gray-600 hover:text-gray-700 mr-4">
+        My Grades
       </a>
-      <a href="#teach" class="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-gray-600">
-        Enseigner sur ROSE?
+      <a href="#profile" class="block mt-4 lg:mt-0 lg:inline-block text-gray-600 hover:text-gray-700">
+        My Profile
       </a>
     </div>
+
     <div>
-      <a routerLink="/login" class="block mt-4 lg:inline-block lg:mt-0 text-gray-500 hover:text-gray-600 mr-4">
-        Se connecter
+      <a routerLink="/login" class="inline-block text-sm px-4 py-2 leading-none border rounded text-gray-600 border-gray-600 hover:border-transparent hover:text-teal-500 hover:bg-white mt-4 lg:mt-0 mr-4">
+        Login
       </a>
-      <a href="#signup" class="block mt-4 lg:inline-block lg:mt-0 text-white bg-teal-500 hover:bg-teal-600 focus:bg-teal-600 active:bg-teal-600 focus:outline-none focus:shadow-outline-teal uppercase text-sm px-5 py-2 rounded">
-        S'inscrire
+      <a href="#signup" class="inline-block text-sm px-5 py-2 leading-none rounded text-white bg-teal-500 hover:bg-teal-600 focus:outline-none focus:shadow-outline uppercase mt-4 lg:mt-0">
+        Sign Up
       </a>
     </div>
   </div>
