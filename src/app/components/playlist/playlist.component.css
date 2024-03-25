@@ -1,0 +1,8 @@
+.lesson-list-container {
+  max-height: 650px;
+  overflow-y: auto;
+}
+
+.lesson-item {
+  margin-bottom: 20px;
+}
