@@ -13,7 +13,15 @@ export class LoginService {
   constructor(private http: HttpClient) { }
 
   login(username: string, password: string): Observable<any> {
-   
+
     return this.http.post<any>(`${this.apiUrl}auth/login`, { username, password });
+  }
+  
+  logout(): void {
+    localStorage.removeItem('accessToken');
+  }
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('accessToken');
   }
 }

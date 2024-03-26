@@ -1,0 +1,10 @@
+<div class="resource-player">
+  <video controls *ngIf="isVideo()" class="player">
+    <source [src]="resource?.url" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <a *ngIf="isFile()" [href]="resource?.url" download="{{ resource?.description }}" class="file-link">
+    Download {{ resource?.title }}
+  </a>
+</div>
