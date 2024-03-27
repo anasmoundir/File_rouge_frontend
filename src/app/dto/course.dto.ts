@@ -5,14 +5,15 @@ import { LessonDTO } from './lesson.dto';
 import { UserDTO } from './user.dto';
 
 export interface CourseDTO {
-  courseId: number;
+  imageUrl: any;
   title: string;
+  subcategoryId: number;
   instructorId: number;
   description: string;
   startDate: Date;
   endDate: Date;
-  subcategoryId: number;
-  resources: ResourcesDTO[];
-  lessons: LessonDTO[];
+  courseId: number;
+  resources: any[];
+  lessons: any[];
+  courseImage: File | undefined;
 }
-

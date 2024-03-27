@@ -19,7 +19,6 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
 import { ChatComponent } from './components/optional/chat/chat.component';
 import { CalendarComponent } from './components/optional/calendar/calendar.component';
 import { HomeComponent } from './components/home/home.component';
-import { StudentpageComponent } from './components/studentpage/studentpage.component';
 import { TeacherRegistrationComponent } from './components/authentication/teacher-registration/teacher-registration.component';
 import { TeacherpageComponent } from './components/teacherpage/teacherpage.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
@@ -31,12 +30,24 @@ import { SidebarComponent } from './components/shared/sidebar/sidebar.component'
 import { InstructorApprovalComponent } from './components/instructor-approval/instructor-approval.component';
 import { CardsComponent } from './components/cards/cards.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from './auth.interceptor';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CategoryComponent } from './components/category/category.component';
 import { SubcategoryComponent } from './components/subcategory/subcategory.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { LessonListComponent } from './components/lesson-list/lesson-list.component';
+import { StudentDashboardComponent } from './components/student-dashboard/student-dashboard.component';
+import { ExploreCoursesComponent } from './components/explore-courses/explore-courses.component';
+import { SearchCoursesComponent } from './components/search-courses/search-courses.component';
+import { CourseDetailsStudentComponent } from './components/course-details-student/course-details-student.component';
+import { EnrollmentComponent } from './components/enrollment/enrollment.component';
+import { PlaylistComponent } from './components/playlist/playlist.component';
+import { ResourcePlayerComponent } from './components/resource-player/resource-player.component';
+import { AccessDeniedComponentComponent } from './components/access-denied-component/access-denied-component.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { JwtModule } from '@auth0/angular-jwt';
+import { ExploreComponent } from './components/explore/explore.component';
 
 
 @NgModule({
@@ -59,7 +70,6 @@ import { LessonListComponent } from './components/lesson-list/lesson-list.compon
     ChatComponent,
     CalendarComponent,
     HomeComponent,
-    StudentpageComponent,
     TeacherRegistrationComponent,
     TeacherpageComponent,
     NavbarComponent,
@@ -74,15 +84,34 @@ import { LessonListComponent } from './components/lesson-list/lesson-list.compon
     SubcategoryComponent,
     CoursesComponent,
     LessonListComponent,
+    StudentDashboardComponent,
+    ExploreCoursesComponent,
+    SearchCoursesComponent,
+    CourseDetailsStudentComponent,
 
-
+    EnrollmentComponent,
+      PlaylistComponent,
+      ResourcePlayerComponent,
+      AccessDeniedComponentComponent,
+      ExploreComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      closeButton: true
+    }),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('accessToken'),
+        allowedDomains: ['http://localhost:4200']
+      }
+    })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }

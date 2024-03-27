@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: your_strong_mysql_root_password
+      MYSQL_DATABASE: BackendFileRouge
+    volumes:
+      - mysql-data:/var/lib/mysql
+  java-app:
+    image: filerougebackend:latest
+    ports:
+      - "8888:8888"
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/BackendFileRouge?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: your_strong_mysql_root_password
+      SECRET_KEY: f7b5c19f433459acc6816901e4457b05c6186110a481d5b1a838aed92650946b
+  front:
+    container_name: front
+    image: front:latest
+    ports:
+      - "4200:80"
+
+    depends_on:
+      - java-app
+
+volumes:
+  mysql-data:  # Volume name

@@ -1,4 +1,4 @@
 export interface EnrollmentDTO {
-  userId: number;
+  // userId: number;
   courseId: number;
 }
