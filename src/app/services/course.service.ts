@@ -29,7 +29,7 @@ export class CourseService {
   getAllCourses(): Observable<CourseDTO[]> {
     return this.http.get<CourseDTO[]>(`${this.baseUrl}`);
   }
-  
+
   getCourseById(id: number): Observable<CourseDTO> {
     return this.http.get<CourseDTO>(`${this.baseUrl}/${id}`);
   }
@@ -41,5 +41,7 @@ export class CourseService {
   deleteCourse(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
-
+  searchCourses(searchTerm: string): Observable<CourseDTO[]> {
+    return this.http.get<CourseDTO[]>(`${this.baseUrl}/search?searchTerm=${searchTerm}`);
+  }
 }

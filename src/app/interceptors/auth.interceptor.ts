@@ -14,7 +14,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-     if (request.url.includes('/api/auth/login') || request.url.includes('/api/Registration')|| request.url.includes('/api/teacherRegister'))
+     if (request.url.includes('/api/auth/login') || request.url.includes('/api/Registration')|| request.url.includes('/api/auth/registration/Teacher')||request.url.includes('/api/auth/registration/User'))
      {
       return next.handle(request);
     }

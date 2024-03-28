@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CourseDTO } from 'src/app/dto/course.dto';
 import { CourseService } from 'src/app/services/course.service';
 
@@ -12,6 +13,7 @@ import { CourseService } from 'src/app/services/course.service';
 export class CourseListComponent implements OnInit{
   showModal: boolean = false;
   uploadingImage: boolean = false;
+  loading: boolean = false; // Loading flag
   courses: CourseDTO[] = [];
   error: string | undefined;
   newCourse: CourseDTO = {
@@ -28,7 +30,7 @@ export class CourseListComponent implements OnInit{
     courseImage: undefined
   };
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getCoursesOfTheCurrentTeacher();
@@ -46,19 +48,8 @@ export class CourseListComponent implements OnInit{
       );
   }
 
-
   createCourse(): void {
-    console.log('newCourse.startDate:', this.newCourse.startDate);
-    console.log('newCourse.endDate:', this.newCourse.endDate);
-
-    if (!(this.newCourse.startDate instanceof Date)) {
-      console.error('newCourse.startDate is not a valid Date object');
-      return;
-    }
-    if (!(this.newCourse.endDate instanceof Date)) {
-      console.error('newCourse.endDate is not a valid Date object');
-      return;
-    }
+    this.loading = true;
 
     const formData = new FormData();
     formData.append('title', this.newCourse.title);
@@ -69,11 +60,10 @@ export class CourseListComponent implements OnInit{
     formData.append('endDate', this.newCourse.endDate.toISOString());
     formData.append('courseImage', this.newCourse.courseImage as File);
 
-    const headers = new HttpHeaders();
-
     this.courseService.createCourse(formData)
       .subscribe(
         createdCourse => {
+          this.toastr.success('Course created successfully!', 'Success');
           this.courses.push(createdCourse);
           this.newCourse = {
             imageUrl: undefined,
@@ -88,9 +78,12 @@ export class CourseListComponent implements OnInit{
             lessons: [],
             courseImage: undefined
           };
+          this.loading = false;
         },
         error => {
           this.error = error;
+          this.toastr.error('Failed to create course. Please try again later.', 'Error');
+          this.loading = false;
         }
       );
   }
@@ -130,6 +123,7 @@ export class CourseListComponent implements OnInit{
         }
       );
   }
+
   toggleModal(): void {
     this.showModal = !this.showModal;
   }

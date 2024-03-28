@@ -14,7 +14,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HeaderComponent } from './components/shared/header/header.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { ErrorHandlingComponent } from './components/miscellaneous/error-handling/error-handling.component';
-import { ConfirmationDialogComponent } from './components/miscellaneous/confirmation-dialog/confirmation-dialog.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 import { ChatComponent } from './components/optional/chat/chat.component';
 import { CalendarComponent } from './components/optional/calendar/calendar.component';
@@ -48,6 +47,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { JwtModule } from '@auth0/angular-jwt';
 import { ExploreComponent } from './components/explore/explore.component';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
+
+
 
 
 @NgModule({
@@ -65,7 +69,6 @@ import { ExploreComponent } from './components/explore/explore.component';
     HeaderComponent,
     FooterComponent,
     ErrorHandlingComponent,
-    ConfirmationDialogComponent,
     SpinnerComponent,
     ChatComponent,
     CalendarComponent,
@@ -86,9 +89,8 @@ import { ExploreComponent } from './components/explore/explore.component';
     LessonListComponent,
     StudentDashboardComponent,
     ExploreCoursesComponent,
-    SearchCoursesComponent,
     CourseDetailsStudentComponent,
-
+    SearchCoursesComponent,
     EnrollmentComponent,
       PlaylistComponent,
       ResourcePlayerComponent,
@@ -99,6 +101,9 @@ import { ExploreComponent } from './components/explore/explore.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    RouterModule,
+    CommonModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

@@ -9,23 +9,23 @@
       <div class="w-full mt-20 mr-0 mb-0 ml-0 relative z-10 max-w-2xl lg:mt-0 lg:w-5/12">
         <div class="flex flex-col items-start justify-start pt-10 pr-10 pb-10 pl-10 bg-white shadow-2xl rounded-xl relative z-10">
           <p class="w-full text-3xl font-semibold text-center leading-normal font-sans">Sign Up For An Account</p>
-          <div class="w-full mt-8 relative space-y-6">
+          <form class="w-full mt-8 relative space-y-6"(ngSubmit)="registerUser()">
             <div class="relative">
               <label class="bg-white pt-0 pr-3 pb-0 pl-3 -mt-4 mr-0 mb-0 ml-2 font-semibold text-gray-700 absolute">Username</label>
-              <input placeholder="John" type="text" class="border placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full pt-4 pr-4 pb-4 pl-4 mt-2 text-base block bg-white border-gray-300 rounded-lg"/>
+              <input placeholder="John" name="username" type="text" class="border placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full pt-4 pr-4 pb-4 pl-4 mt-2 text-base block bg-white border-gray-300 rounded-lg" [(ngModel)]="userData.username" name="username" required/>
             </div>
             <div class="relative">
               <label class="bg-white pt-0 pr-3 pb-0 pl-3 -mt-4 mr-0 mb-0 ml-2 font-semibold text-gray-700 absolute">Email</label>
-              <input placeholder="123@example.com" type="email" class="border placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full pt-4 pr-4 pb-4 pl-4 mt-2 text-base block bg-white border-gray-300 rounded-lg"/>
+              <input placeholder="123@example.com" name="email" type="email" class="border placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full pt-4 pr-4 pb-4 pl-4 mt-2 text-base block bg-white border-gray-300 rounded-lg" [(ngModel)]="userData.email" name="email" required/>
             </div>
             <div class="relative">
               <label class="bg-white pt-0 pr-3 pb-0 pl-3 -mt-4 mr-0 mb-0 ml-2 font-semibold text-gray-700 absolute">Password</label>
-              <input placeholder="Password" type="password" class="border placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full pt-4 pr-4 pb-4 pl-4 mt-2 text-base block bg-white border-gray-300 rounded-lg"/>
+              <input placeholder="Password" name="password" type="password" class="border placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 w-full pt-4 pr-4 pb-4 pl-4 mt-2 text-base block bg-white border-gray-300 rounded-lg" [(ngModel)]="userData.password" name="password" required/>
             </div>
             <div class="relative">
-              <button class="w-full pt-4 pr-5 pb-4 pl-5 text-lg font-semibold text-center text-white bg-indigo-500 rounded-lg transition duration-300 hover:bg-indigo-600 ease">Submit</button>
+              <button type="submit" class="w-full pt-4 pr-5 pb-4 pl-5 text-lg font-semibold text-center text-white bg-indigo-500 rounded-lg transition duration-300 hover:bg-indigo-600 ease">Submit</button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

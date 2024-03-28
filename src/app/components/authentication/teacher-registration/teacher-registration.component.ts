@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-
-import { TeacherRegistrationDTO } from 'src/app/models/TeacherRegistrationDTO';
+import { ToastrService } from 'ngx-toastr';
 import { RegistrationService } from 'src/app/services/registration.service';
+import { Router } from '@angular/router';
+import { TeacherRegistrationDTO } from 'src/app/models/TeacherRegistrationDTO';
 
 @Component({
   selector: 'app-teacher-registration',
@@ -10,54 +11,13 @@ import { RegistrationService } from 'src/app/services/registration.service';
 })
 export class TeacherRegistrationComponent {
   teacherRegistration: TeacherRegistrationDTO = {
-    username: '',
-    password: '',
-    email: '',
-    firstName: '',
-    lastName: '',
-    address: '',
-    phoneNumber: '',
-    educationalQualifications: '',
-    teachingExperience: '',
-    professionalExperience: '',
-    teachingPhilosophy: '',
-    references: '',
-    sampleLessonPlans: '',
-    availability: ''
-  };
-  justificationPaper: File | null = null;
-
-  constructor(private registrationService: RegistrationService) {}
-
-  onFileSelected(event: any) {
-    this.justificationPaper = event.target.files[0];
-  }
-
-  submitRegistration() {
-
-    console.log('Form submitted');
-    console.log('Teacher Registration Data:', this.teacherRegistration);
-    console.log('Justification Paper:', this.justificationPaper);
-    
-
-    this.registrationService.registerTeacher(this.teacherRegistration)
-      .subscribe(
-        (response: any) => {
-            console.log('Registration successful:', response);
-          this.resetForm();
-        },
-        (error: any) => {
-
-          console.error('Registration failed:', error);
-        }
-      );
-  }
-
-  resetForm() {
-    this.teacherRegistration = {
+    user: {
       username: '',
-      password: '',
       email: '',
+      password: ''
+    },
+    teacher: {
+      approved: false,
       firstName: '',
       lastName: '',
       address: '',
@@ -69,7 +29,60 @@ export class TeacherRegistrationComponent {
       references: '',
       sampleLessonPlans: '',
       availability: ''
+    }
+  };
+
+  constructor(
+    private registrationService: RegistrationService,
+    private toastr: ToastrService,
+    private router: Router
+  ) {}
+
+  submitRegistration() {
+    console.log('Form submitted');
+    console.log('Teacher Registration Data:', this.teacherRegistration);
+
+    this.registrationService.registerTeacher(this.teacherRegistration)
+      .subscribe(
+        response => {
+          response.error('Error registering user:', response);
+          this.toastr.error('Registration failed: ' + response.message);
+        },
+        error => {
+          console.log('Registration response:', error);
+          if (error.status === 201) {
+            console.log('User registered successfully');
+            this.toastr.success('Registration successful');
+            this.router.navigate(['/login']);
+          } else {
+            console.error('Unexpected response:', error);
+            this.toastr.error('Unexpected response from the server');
+          }
+        }
+      );
+  }
+
+  resetForm() {
+    this.teacherRegistration = {
+      user: {
+        username: '',
+        email: '',
+        password: ''
+      },
+      teacher: {
+        approved: false,
+        firstName: '',
+        lastName: '',
+        address: '',
+        phoneNumber: '',
+        educationalQualifications: '',
+        teachingExperience: '',
+        professionalExperience: '',
+        teachingPhilosophy: '',
+        references: '',
+        sampleLessonPlans: '',
+        availability: ''
+      }
     };
-    this.justificationPaper = null;
   }
 }

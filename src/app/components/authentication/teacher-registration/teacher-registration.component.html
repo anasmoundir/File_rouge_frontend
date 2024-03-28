@@ -10,75 +10,81 @@
       <form class="space-y-6" (submit)="submitRegistration()">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-          <input id="email" name="email" type="email" required [(ngModel)]="teacherRegistration.email" placeholder="Enter your email" class="input-field">
+          <input id="email" name="email" type="email" required [(ngModel)]="teacherRegistration.user.email" placeholder="Enter your email" class="input-field">
+        </div>
+
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+          <input id="username" name="username" type="text" required [(ngModel)]="teacherRegistration.user.username" placeholder="Enter your username" class="input-field">
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+          <input id="password" name="password" type="password" required [(ngModel)]="teacherRegistration.user.password" placeholder="Enter your password" class="input-field">
         </div>
 
         <div>
           <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
-          <input id="firstName" name="firstName" type="text" required [(ngModel)]="teacherRegistration.firstName" placeholder="Enter your first name" class="input-field">
+          <input id="firstName" name="firstName" type="text" required [(ngModel)]="teacherRegistration.teacher.firstName" placeholder="Enter your first name" class="input-field">
         </div>
 
         <div>
           <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
-          <input id="lastName" name="lastName" type="text" required [(ngModel)]="teacherRegistration.lastName" placeholder="Enter your last name" class="input-field">
+          <input id="lastName" name="lastName" type="text" required [(ngModel)]="teacherRegistration.teacher.lastName" placeholder="Enter your last name" class="input-field">
         </div>
 
         <div>
           <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
-          <input id="address" name="address" type="text" required [(ngModel)]="teacherRegistration.address" placeholder="Enter your address" class="input-field">
+          <input id="address" name="address" type="text" required [(ngModel)]="teacherRegistration.teacher.address" placeholder="Enter your address" class="input-field">
         </div>
 
         <div>
           <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
-          <input id="phoneNumber" name="phoneNumber" type="text" required [(ngModel)]="teacherRegistration.phoneNumber" placeholder="Enter your phone number" class="input-field">
+          <input id="phoneNumber" name="phoneNumber" type="text" required [(ngModel)]="teacherRegistration.teacher.phoneNumber" placeholder="Enter your phone number" class="input-field">
         </div>
 
         <div>
           <label for="educationalQualifications" class="block text-sm font-medium text-gray-700">Educational Qualifications</label>
-          <input id="educationalQualifications" name="educationalQualifications" type="text" required [(ngModel)]="teacherRegistration.educationalQualifications" placeholder="Enter your educational qualifications" class="input-field">
+          <input id="educationalQualifications" name="educationalQualifications" type="text" required [(ngModel)]="teacherRegistration.teacher.educationalQualifications" placeholder="Enter your educational qualifications" class="input-field">
         </div>
 
         <div>
           <label for="teachingExperience" class="block text-sm font-medium text-gray-700">Teaching Experience (Years)</label>
-          <input id="teachingExperience" name="teachingExperience" type="number" required [(ngModel)]="teacherRegistration.teachingExperience" placeholder="Enter your teaching experience (years)" class="input-field">
-        </div>
-
-        <div>
-          <label for="teachingExperience" class="block text-sm font-medium text-gray-700">Teaching Experience</label>
-          <input id="teachingExperience" name="username" type="number" required [(ngModel)]="teacherRegistration.username" placeholder="chosen username here  (years)" class="input-field">
+          <input id="teachingExperience" name="teachingExperience" type="number" required [(ngModel)]="teacherRegistration.teacher.teachingExperience" placeholder="Enter your teaching experience (years)" class="input-field">
         </div>
 
         <div>
           <label for="professionalExperience" class="block text-sm font-medium text-gray-700">Professional Experience</label>
-          <input id="professionalExperience" name="professionalExperience" type="text" required [(ngModel)]="teacherRegistration.professionalExperience" placeholder="Enter your professional experience" class="input-field">
+          <input id="professionalExperience" name="professionalExperience" type="text" required [(ngModel)]="teacherRegistration.teacher.professionalExperience" placeholder="Enter your professional experience" class="input-field">
         </div>
 
         <div>
           <label for="teachingPhilosophy" class="block text-sm font-medium text-gray-700">Teaching Philosophy</label>
-          <input id="teachingPhilosophy" name="teachingPhilosophy" type="text" required [(ngModel)]="teacherRegistration.teachingPhilosophy" placeholder="Enter your teaching philosophy" class="input-field">
+          <input id="teachingPhilosophy" name="teachingPhilosophy" type="text" required [(ngModel)]="teacherRegistration.teacher.teachingPhilosophy" placeholder="Enter your teaching philosophy" class="input-field">
         </div>
 
         <div>
           <label for="references" class="block text-sm font-medium text-gray-700">References</label>
-          <input id="references" name="references" type="text" required [(ngModel)]="teacherRegistration.references" placeholder="Enter your references" class="input-field">
+          <input id="references" name="references" type="text" required [(ngModel)]="teacherRegistration.teacher.references" placeholder="Enter your references" class="input-field">
         </div>
 
         <div>
           <label for="sampleLessonPlans" class="block text-sm font-medium text-gray-700">Sample Lesson Plans</label>
-          <input id="sampleLessonPlans" name="sampleLessonPlans" type="text" required [(ngModel)]="teacherRegistration.sampleLessonPlans" placeholder="Enter your sample lesson plans" class="input-field">
+          <input id="sampleLessonPlans" name="sampleLessonPlans" type="text" required [(ngModel)]="teacherRegistration.teacher.sampleLessonPlans" placeholder="Enter your sample lesson plans" class="input-field">
         </div>
 
         <div>
           <label for="availability" class="block text-sm font-medium text-gray-700">Availability</label>
-          <input id="availability" name="availability" type="text" required [(ngModel)]="teacherRegistration.availability" placeholder="Enter your availability" class="input-field">
+          <input id="availability" name="availability" type="text" required [(ngModel)]="teacherRegistration.teacher.availability" placeholder="Enter your availability" class="input-field">
         </div>
 
         <div>
-          <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            Apply
-          </button>
-        </div>
-      </form>
-    </div>
+          <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:
+          ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+          Apply
+        </button>
+      </div>
+    </form>
   </div>
+</div>
 </div>

@@ -23,13 +23,19 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin-guard.guard';
 import { TeacherGuard } from './guards/teacher-guard.guard';
 import { ExploreComponent } from './components/explore/explore.component';
+import { AlreadyAuthGuard } from './guards/already-auth-guard.guard';
+import { SearchCoursesComponent } from './search-courses/search-courses.component';
 
 const routes: Routes = [
   {path:'explore',component:ExploreComponent},
   { path: 'access-denied', component: AccessDeniedComponentComponent },
   { path: 'Registration', component: RegistrationComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent, canActivate: [AlreadyAuthGuard]},
+  { path: 'home', component: HomeComponent
+  ,children:[
+    { path: '', component: ExploreCoursesComponent },
+
+  ] },
   { path: 'teacherRegister', component: TeacherRegistrationComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 
@@ -37,6 +43,7 @@ const routes: Routes = [
     path: 'teacher',
     component: TeacherpageComponent,
     children: [
+      { path: '', component: CourseListComponent },
       { path: 'Mycourse', component: CourseListComponent },
       { path: 'lessons/:courseId', component: LessonListComponent },
       { path: 'resources/lesson/:lessonId', component: ResourceListComponent },
@@ -58,16 +65,16 @@ const routes: Routes = [
     path: 'student',
     component: StudentDashboardComponent,
     children: [
+      { path: '', component: ExploreCoursesComponent },
       { path: 'ExploreCourses', component: ExploreCoursesComponent },
       { path: 'courseDetailsStudent/:courseId', component: CourseDetailsStudentComponent },
       { path: 'enrollment', component: EnrollmentComponent },
       { path: 'startLearning/:courseId', component: PlaylistComponent },
-      { path: 'resourcePlayer/:resourceId', component: ResourcePlayerComponent }
-
+      { path: 'resourcePlayer/:resourceId', component: ResourcePlayerComponent },
+      { path: 'search', component: SearchCoursesComponent }
     ],
     canActivate: [AuthGuard]
   },
-  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

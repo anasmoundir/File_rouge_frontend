@@ -39,5 +39,12 @@ export class LoginService {
     return expirationDate.getTime() < Date.now();
   }
 
-
+  getUserRole(): string | null {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      const decodedToken = this.jwtDecodeService.decodeToken(accessToken);
+      return decodedToken ? decodedToken.role : null;
+    }
+    return null;
+  }
 }
